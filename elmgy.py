@@ -35,7 +35,7 @@ class LYB:
         self.name1 = self.uid
 
     def xsign(self, api, data, wua, v):
-        url = "http://bj.frp.one:17151/getXSign"
+        url = "http://192.168.31.48:9999/api/getXSign"
         body = {
             "data": data,
             "api": api,
@@ -385,7 +385,7 @@ class LYB:
         amount1, roleId1, Sunlightvalue = self.warte()
         if roleId1 == '0':
             return None
-        
+
         for i1 in range(amount1):
             api = 'mtop.alsc.playgame.orchard.roleoperate.useprop'
             data2 = json.dumps({

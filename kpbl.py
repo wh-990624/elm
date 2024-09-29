@@ -62,8 +62,7 @@ def xsign(api, data, uid, sid, wua, v):
 
     try:
         r = requests.post(
-            "http://bj.frp.one:17151/getXSign",
-            # "http://127.0.0.1:18848/api/getXSign",
+            "http://192.168.31.48:9999/api/getXSign",
             json=body
         )
         r.raise_for_status()
@@ -314,7 +313,7 @@ class TYT:
         data = json.dumps({"bizScene": "CAPYBARA", "bizMethod": "getTasks",
                            "bizParam": "{\"gameId\":\"" + self.gameId + "\",\"token\":\"" + self.token + "\"}",
                            "longitude": "104.09800574183464", "latitude": "30.22990694269538"})
-        
+
         res = req(api, data, self.uid, self.sid, "1.0")
         print(f"获取任务列表",res.text)
 
@@ -368,14 +367,14 @@ class TYT:
         else:
             print(f"[{self.name}] T003 任务未开始！先做任务")
             return 'T003'
-            
+
         return True
     def postTask(self,taskId):
         api = 'mtop.alsc.playgame.mini.game.dispatch'
         data = json.dumps({"bizScene": "CAPYBARA", "bizMethod": "finisheTask",
                            "bizParam": "{\"taskId\":\"" + taskId + "\",\"gameId\":\"" + self.gameId + "\",\"token\":\"" + self.token + "\"}",
                            "longitude": "104.09800574183464", "latitude": "30.22990694269538"})
-        
+
         res = req(api, data, self.uid, self.sid, "1.0")
         print(f"完成任务{taskId}",res.text)
         if res.json()['ret'][0] == 'SUCCESS::调用成功':
@@ -407,7 +406,7 @@ class TYT:
             "bizScene":"CAPYBARA",
             "bizMethod":"useGameProp",
             "bizParam":bizParam,
-            "longitude": "104.09800574183464", 
+            "longitude": "104.09800574183464",
             "latitude": "30.22990694269538"
         })
         try:

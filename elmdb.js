@@ -9,7 +9,7 @@
 
 const $ = new Env('MK饿了么夺宝');
 const axios = require('axios');
-const elmSignUrl = process.env.elmSignUrl ? process.env.elmSignUrl : "http://bj.frp.one:17151/getXSign";
+const elmSignUrl = process.env.elmSignUrl ? process.env.elmSignUrl : "http://192.168.31.48:9999/api/getXSign";
 let cookiesArr = []
 
 if (process.env.elmck) {
@@ -72,7 +72,7 @@ async function getApiElmSign(api, data, uid, sid) {
         dataAxios,
         {
             headers:
-                {"content-type": "application/json"}
+                { "content-type": "application/json" }
         });
 
 
@@ -123,9 +123,9 @@ async function elmRequestByApi(cookie, api, data) {
 
     let params = elmSignInfo['wua'] ? {
         "wua": elmSignInfo['wua'], "data": data
-    } : {"data": data};
+    } : { "data": data };
 
-    const response = await axios.post(url, params, {headers});
+    const response = await axios.post(url, params, { headers });
     if (response && response.data && response.data.data) {
         return response.data
     }
@@ -166,13 +166,13 @@ async function getDBHomepage(cookie) {
     //console.log(JSON.stringify(treasureHuntList))
     if (treasureHuntList && treasureHuntList.length > 0) {
         let onlinetreasureHuntList = treasureHuntList.filter(item => item.status && item.status.indexOf("ONLINE") > -1).map(item => {
-                return {
-                    taskSetId: item.properties.taskSetId,
-                    popTaskId: item.properties.popTaskId,
-                    hasParticipated: item.properties.hasParticipated,
-                    name: item.baseInfo.title
-                };
-            }
+            return {
+                taskSetId: item.properties.taskSetId,
+                popTaskId: item.properties.popTaskId,
+                hasParticipated: item.properties.hasParticipated,
+                name: item.baseInfo.title
+            };
+        }
         );
 
         return onlinetreasureHuntList
@@ -207,7 +207,7 @@ function Env(t, e) {
         }
 
         send(t, e = "GET") {
-            t = "string" == typeof t ? {url: t} : t;
+            t = "string" == typeof t ? { url: t } : t;
             let s = this.get;
             return "POST" === e && (s = this.post), new Promise((e, i) => {
                 s.call(this, t, (t, s, r) => {
@@ -282,7 +282,7 @@ function Env(t, e) {
 
         getScript(t) {
             return new Promise(e => {
-                this.get({url: t}, (t, s, i) => e(i))
+                this.get({ url: t }, (t, s, i) => e(i))
             })
         }
 
@@ -294,8 +294,8 @@ function Env(t, e) {
                 r = r ? 1 * r : 20, r = e && e.timeout ? e.timeout : r;
                 const [o, h] = i.split("@"), n = {
                     url: `http://${h}/v1/scripting/evaluate`,
-                    body: {script_text: t, mock_type: "cron", timeout: r},
-                    headers: {"X-Key": o, Accept: "*/*"}
+                    body: { script_text: t, mock_type: "cron", timeout: r },
+                    headers: { "X-Key": o, Accept: "*/*" }
                 };
                 this.post(n, (t, e, i) => s(i))
             }).catch(t => this.logErr(t))
@@ -383,11 +383,11 @@ function Env(t, e) {
 
         get(t, e = (() => {
         })) {
-            t.headers && (delete t.headers["Content-Type"], delete t.headers["Content-Length"]), this.isSurge() || this.isLoon() ? (this.isSurge() && this.isNeedRewrite && (t.headers = t.headers || {}, Object.assign(t.headers, {"X-Surge-Skip-Scripting": !1})), $httpClient.get(t, (t, s, i) => {
+            t.headers && (delete t.headers["Content-Type"], delete t.headers["Content-Length"]), this.isSurge() || this.isLoon() ? (this.isSurge() && this.isNeedRewrite && (t.headers = t.headers || {}, Object.assign(t.headers, { "X-Surge-Skip-Scripting": !1 })), $httpClient.get(t, (t, s, i) => {
                 !t && s && (s.body = i, s.statusCode = s.status), e(t, s, i)
-            })) : this.isQuanX() ? (this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, {hints: !1})), $task.fetch(t).then(t => {
-                const {statusCode: s, statusCode: i, headers: r, body: o} = t;
-                e(null, {status: s, statusCode: i, headers: r, body: o}, o)
+            })) : this.isQuanX() ? (this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, { hints: !1 })), $task.fetch(t).then(t => {
+                const { statusCode: s, statusCode: i, headers: r, body: o } = t;
+                e(null, { status: s, statusCode: i, headers: r, body: o }, o)
             }, t => e(t))) : this.isNode() && (this.initGotEnv(t), this.got(t).on("redirect", (t, e) => {
                 try {
                     if (t.headers["set-cookie"]) {
@@ -398,29 +398,29 @@ function Env(t, e) {
                     this.logErr(t)
                 }
             }).then(t => {
-                const {statusCode: s, statusCode: i, headers: r, body: o} = t;
-                e(null, {status: s, statusCode: i, headers: r, body: o}, o)
+                const { statusCode: s, statusCode: i, headers: r, body: o } = t;
+                e(null, { status: s, statusCode: i, headers: r, body: o }, o)
             }, t => {
-                const {message: s, response: i} = t;
+                const { message: s, response: i } = t;
                 e(s, i, i && i.body)
             }))
         }
 
         post(t, e = (() => {
         })) {
-            if (t.body && t.headers && !t.headers["Content-Type"] && (t.headers["Content-Type"] = "application/x-www-form-urlencoded"), t.headers && delete t.headers["Content-Length"], this.isSurge() || this.isLoon()) this.isSurge() && this.isNeedRewrite && (t.headers = t.headers || {}, Object.assign(t.headers, {"X-Surge-Skip-Scripting": !1})), $httpClient.post(t, (t, s, i) => {
+            if (t.body && t.headers && !t.headers["Content-Type"] && (t.headers["Content-Type"] = "application/x-www-form-urlencoded"), t.headers && delete t.headers["Content-Length"], this.isSurge() || this.isLoon()) this.isSurge() && this.isNeedRewrite && (t.headers = t.headers || {}, Object.assign(t.headers, { "X-Surge-Skip-Scripting": !1 })), $httpClient.post(t, (t, s, i) => {
                 !t && s && (s.body = i, s.statusCode = s.status), e(t, s, i)
-            }); else if (this.isQuanX()) t.method = "POST", this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, {hints: !1})), $task.fetch(t).then(t => {
-                const {statusCode: s, statusCode: i, headers: r, body: o} = t;
-                e(null, {status: s, statusCode: i, headers: r, body: o}, o)
+            }); else if (this.isQuanX()) t.method = "POST", this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, { hints: !1 })), $task.fetch(t).then(t => {
+                const { statusCode: s, statusCode: i, headers: r, body: o } = t;
+                e(null, { status: s, statusCode: i, headers: r, body: o }, o)
             }, t => e(t)); else if (this.isNode()) {
                 this.initGotEnv(t);
-                const {url: s, ...i} = t;
+                const { url: s, ...i } = t;
                 this.got.post(s, i).then(t => {
-                    const {statusCode: s, statusCode: i, headers: r, body: o} = t;
-                    e(null, {status: s, statusCode: i, headers: r, body: o}, o)
+                    const { statusCode: s, statusCode: i, headers: r, body: o } = t;
+                    e(null, { status: s, statusCode: i, headers: r, body: o }, o)
                 }, t => {
-                    const {message: s, response: i} = t;
+                    const { message: s, response: i } = t;
                     e(s, i, i && i.body)
                 })
             }
@@ -445,19 +445,19 @@ function Env(t, e) {
         msg(e = t, s = "", i = "", r) {
             const o = t => {
                 if (!t) return t;
-                if ("string" == typeof t) return this.isLoon() ? t : this.isQuanX() ? {"open-url": t} : this.isSurge() ? {url: t} : void 0;
+                if ("string" == typeof t) return this.isLoon() ? t : this.isQuanX() ? { "open-url": t } : this.isSurge() ? { url: t } : void 0;
                 if ("object" == typeof t) {
                     if (this.isLoon()) {
                         let e = t.openUrl || t.url || t["open-url"], s = t.mediaUrl || t["media-url"];
-                        return {openUrl: e, mediaUrl: s}
+                        return { openUrl: e, mediaUrl: s }
                     }
                     if (this.isQuanX()) {
                         let e = t["open-url"] || t.url || t.openUrl, s = t["media-url"] || t.mediaUrl;
-                        return {"open-url": e, "media-url": s}
+                        return { "open-url": e, "media-url": s }
                     }
                     if (this.isSurge()) {
                         let e = t.url || t.openUrl || t["open-url"];
-                        return {url: e}
+                        return { url: e }
                     }
                 }
             };

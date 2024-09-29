@@ -11,7 +11,7 @@ const _0x731544 = ["iPad;3.7.0;14.4;network/wifi;Mozilla/5.0 (iPad; CPU OS 14_4 
     _0x30f1ac = require("child_process").exec,
     _0x5c8af1 = "网络异常，跳过",
     _0x44ed71 = require("crypto");
-const signhost = process.env.signhost || "127.0.0.1:18848";
+const signhost = process.env.signhost || "192.168.31.48:9999";
 const https = require("https");
 const cheerio = require("cheerio");
 const axios = require("axios");
@@ -107,13 +107,13 @@ function _0x29be58(_0x4b02a4, _0x2bf34a, _0x494579, _0x34c060, _0x44b02b = 5) {
 
 function _0x3d6510() {
     var _0x14ea68 = function (_0x368c59) {
-            this.s = _0x368c59;
-            this.length = _0x368c59.length;
+        this.s = _0x368c59;
+        this.length = _0x368c59.length;
 
-            for (var _0x18ad00 = 0; _0x18ad00 < _0x368c59.length; _0x18ad00++) {
-                this[_0x18ad00] = _0x368c59.charAt(_0x18ad00);
-            }
-        },
+        for (var _0x18ad00 = 0; _0x18ad00 < _0x368c59.length; _0x18ad00++) {
+            this[_0x18ad00] = _0x368c59.charAt(_0x18ad00);
+        }
+    },
         _0x498134 = function _0x2a22b6(_0x1f8a4a) {
             return function (_0x3ad331) {
                 return function (_0x3848a5) {
@@ -194,59 +194,59 @@ function _0x3359bc(_0xe2284, _0x34930d, _0x562fb3) {
 }
 
 const _0x1d6167 = async (_0x43d4a1, _0x20c404, _0x23a942, _0x14e813, _0x5e7de3 = 5) => {
-        _0x43d4a1 = _0x43d4a1.replace(/\s/g, "");
+    _0x43d4a1 = _0x43d4a1.replace(/\s/g, "");
 
-        let _0x21806b = _0x2a5f33(_0x43d4a1);
+    let _0x21806b = _0x2a5f33(_0x43d4a1);
 
 
-        _0x21806b = _0x21806b.split("_")[0];
+    _0x21806b = _0x21806b.split("_")[0];
 
-        let _0x53b337 = {},
-            _0x35ae16 = JSON.stringify(_0x53b337),
-            _0x3f84bb = 12574478,
-            _0x480ce5 = new Date().getTime(),
-            _0xd90e1e = await _0x354358(_0x21806b + "&" + _0x480ce5 + "&" + _0x3f84bb + "&" + _0x35ae16, _0x23a942, _0x14e813),
-            _0x48d119 = {
-                Cookie: _0x43d4a1,
-                "User-Agent": _0x25790f
-            };
-
-        const _0x46e0b4 = {
-            url: "https://shopping.ele.me/h5/mtop.alsc.user.session.ele.check/1.0/?H5Request=true&api=mtop.alsc.user.session.ele.check&appKey=12574478&data={}&dataType=json&jsv=2.6.2&mainDomain=ele.me&pageDomain=ele.me&sign=" + _0xd90e1e + "&subDomain=shopping&t=" + _0x480ce5 + "&timeout=5000&type=json&v=1.0",
-            method: "GET",
-            headers: _0x48d119,
-            timeout: 15000
+    let _0x53b337 = {},
+        _0x35ae16 = JSON.stringify(_0x53b337),
+        _0x3f84bb = 12574478,
+        _0x480ce5 = new Date().getTime(),
+        _0xd90e1e = await _0x354358(_0x21806b + "&" + _0x480ce5 + "&" + _0x3f84bb + "&" + _0x35ae16, _0x23a942, _0x14e813),
+        _0x48d119 = {
+            Cookie: _0x43d4a1,
+            "User-Agent": _0x25790f
         };
-        return _0x13509e(_0x3c56a0 => {
-            try {
-                request(_0x46e0b4, async (_0x49016c, _0xd883b9, _0x6b70ae) => {
-                    if (!_0x49016c && _0xd883b9.statusCode === 200) {
-                        const _0x5dab8d = JSON.parse(_0x6b70ae);
 
-                        if (_0x5dab8d.data.errorCode === "000502") {
-                            console.log("第", _0x20c404 + 1, "账号失效！请重新登录！！！😭");
+    const _0x46e0b4 = {
+        url: "https://shopping.ele.me/h5/mtop.alsc.user.session.ele.check/1.0/?H5Request=true&api=mtop.alsc.user.session.ele.check&appKey=12574478&data={}&dataType=json&jsv=2.6.2&mainDomain=ele.me&pageDomain=ele.me&sign=" + _0xd90e1e + "&subDomain=shopping&t=" + _0x480ce5 + "&timeout=5000&type=json&v=1.0",
+        method: "GET",
+        headers: _0x48d119,
+        timeout: 15000
+    };
+    return _0x13509e(_0x3c56a0 => {
+        try {
+            request(_0x46e0b4, async (_0x49016c, _0xd883b9, _0x6b70ae) => {
+                if (!_0x49016c && _0xd883b9.statusCode === 200) {
+                    const _0x5dab8d = JSON.parse(_0x6b70ae);
 
-                            _0x3c56a0(null);
-                        } else {
-                            _0x5e7de3 <= 0 && (console.log("第", _0x20c404 + 1, "cookie存在异常，请检查"), _0x3c56a0(null));
-
-                            if (_0x5dab8d.ret.includes("FAIL_SYS_TOKEN_EXOIRED::令牌过期") || _0x5dab8d.ret.includes("FAIL_SYS_TOKEN_EMPTY::令牌为空")) {
-                                _0x3c56a0(await _0x29be58(_0x43d4a1, _0x20c404, _0x23a942, _0x14e813, _0x5e7de3 - 1));
-                            } else {
-                                _0x3c56a0(_0x43d4a1);
-                            }
-                        }
-                    } else {
-                        _0x49016c && _0x49016c.message.indexOf("Invalid character in header content [\"Cookie\"]") !== -1 ? console.log("第", _0x20c404 + 1, "账号ck不合法，请确认！！！") : console.log(_0x49016c);
+                    if (_0x5dab8d.data.errorCode === "000502") {
+                        console.log("第", _0x20c404 + 1, "账号失效！请重新登录！！！😭");
 
                         _0x3c56a0(null);
+                    } else {
+                        _0x5e7de3 <= 0 && (console.log("第", _0x20c404 + 1, "cookie存在异常，请检查"), _0x3c56a0(null));
+
+                        if (_0x5dab8d.ret.includes("FAIL_SYS_TOKEN_EXOIRED::令牌过期") || _0x5dab8d.ret.includes("FAIL_SYS_TOKEN_EMPTY::令牌为空")) {
+                            _0x3c56a0(await _0x29be58(_0x43d4a1, _0x20c404, _0x23a942, _0x14e813, _0x5e7de3 - 1));
+                        } else {
+                            _0x3c56a0(_0x43d4a1);
+                        }
                     }
-                });
-            } catch (_0x4eb54b) {
-                console.log(_0x5c8af1);
-            }
-        });
-    },
+                } else {
+                    _0x49016c && _0x49016c.message.indexOf("Invalid character in header content [\"Cookie\"]") !== -1 ? console.log("第", _0x20c404 + 1, "账号ck不合法，请确认！！！") : console.log(_0x49016c);
+
+                    _0x3c56a0(null);
+                }
+            });
+        } catch (_0x4eb54b) {
+            console.log(_0x5c8af1);
+        }
+    });
+},
     _0x1de3c7 = async (_0x550593, _0x53145f, _0x3b1b39, _0x29e6ca = 5) => {
         _0x550593 = _0x550593.replace(/\s/g, "");
 
@@ -340,7 +340,7 @@ function _0x9aad74(_0xa9abe4) {
 }
 
 const _0x33d833 = async (_0x1bf084, _0x5525e4, _0x8f41c0 = 5) => {
-    },
+},
     _0x3a32a9 = async (_0x4ae550, _0x55f113, _0x244343, _0x7c401d = 5) => {
     },
     _0x55f03b = async (_0x521e38, _0x17d974, _0x1d0c11 = 5) => {
@@ -544,7 +544,7 @@ function _0x235b2e(_0x82a409, _0x51972d, _0x4a4231, _0x52a5f9, _0x411ecc, _0x5bd
                     console.error('解析json失败:', error.message);
                     _0x527f9e();
                 }
-            } else{
+            } else {
                 console.error('解析json失败');
                 console.log(_0x333b0f);
                 _0x527f9e();
@@ -762,7 +762,7 @@ async function getCoordinates() {
             });
             fae.on("end", () => {
                 const arayana = cheerio.load(arsalaan), jasia = arayana(".widget_box.p-xs.small"), dannita = jasia.find("li").eq(4).text().trim().split(":")[1], renee = jasia.find("li").eq(5).text().trim().split(":")[1];
-                joash({latitude: dannita, longitude: renee});
+                joash({ latitude: dannita, longitude: renee });
             });
         });
     });

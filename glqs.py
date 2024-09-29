@@ -17,7 +17,7 @@ ck = ''
 import json
 import random
 import string
-import base64  
+import base64
 
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_v1_5, PKCS1_OAEP
@@ -161,7 +161,7 @@ class TYT:
 
         try:
             r = requests.post(
-                "http://bj.frp.one:17151/getXSign",
+                "http://192.168.31.48:9999/api/getXSign",
                 json=body
             )
             r.raise_for_status()
@@ -285,7 +285,7 @@ class TYT:
         except Exception as e:
             print(f"[{self.name1}] ❎登录失败: {e}")
             return False
-    
+
     def task(self):
         print(f"[{self.name1}] 开始获取游戏任务")
         api = 'mtop.ele.biz.growth.task.core.querytask'
@@ -364,7 +364,7 @@ class TYT:
                                     print(f'请求错误')
                                     return None
         except Exception as e:
-            print(f"[{self.name}] ❎请求失败：",e)    
+            print(f"[{self.name}] ❎请求失败：",e)
 
     def query_game_info(self):
         api = 'mtop.alsc.playgame.mini.game.index'
