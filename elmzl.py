@@ -9,7 +9,7 @@ import datetime
 
 host = 'https://acs.m.goofish.com'
 
-zlck = os.environ.get('ZL_CK')
+zlck = os.environ.get('elmzlck')
 
 ck = ""
 
@@ -395,7 +395,7 @@ if __name__ == '__main__':
     if cookie == "":
         print("❎本地变量为空，请设置其中一个变量后再运行")
         exit(-1)
-    
+
     cookies = cookie.split("&")
 
     zlck_list = zlck.split("&")
