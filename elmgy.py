@@ -6,7 +6,7 @@ import requests
 from urllib.parse import quote
 from datetime import datetime, date
 
-nczlck = os.environ.get('elmck')
+nczlck = os.environ.get('elmzlck')
 
 ck = ''
 
